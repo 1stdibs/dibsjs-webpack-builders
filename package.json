@@ -1,0 +1,9 @@
+{
+  "name": "dibsjs-webpack-builders",
+  "version": "1.0.0",
+  "dependencies": {
+    "local-module-regex": "^1.0.4",
+    "lodash.flow": "^3.3.0",
+    "webpack-config-builders": "^1.0.3"
+  }
+}
