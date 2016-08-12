@@ -44,7 +44,7 @@ const loadersForPackage = packageRoot => {
             include: isInPackageRegex,
             loader: 'babel'
         }),
-        cssWithExtractor: (extractorPlugin, queryOverride) => addLoader({
+        sassWithExtractor: (extractorPlugin, queryOverride) => addLoader({
             test: /\.s?css$/,
             include: isInPackageRegex,
             loader: extractorPlugin.extract({
@@ -52,10 +52,23 @@ const loadersForPackage = packageRoot => {
                 loader: buildLoader([cssLoaderChain, 'sass-loader'], queryOverride)
             })
         }),
+        cssWithExtractor: (extractorPlugin, queryOverride) => addLoader({
+            test: /\.css$/,
+            include: isInPackageRegex,
+            loader: extractorPlugin.extract({
+                fallbackLoader: 'style-loader',
+                loader: buildLoader([cssLoaderChain], queryOverride)
+            })
+        }),
+        sass: queryOverride => addLoader({
+            test: /\.s?css$/,
+            include: isInPackageRegex,
+            loader: buildLoader(['style', cssLoaderChain, 'sass-loader'], queryOverride)
+        }),
         css: queryOverride => addLoader({
             test: /\.s?css$/,
             include: isInPackageRegex,
-            loader: buildLoader(['style-loader', cssLoaderChain, 'sass-loader'], queryOverride)
+            loader: buildLoader(['style-loader', cssLoaderChain], queryOverride)
         }),
         json: addLoader({
             test: /\.json$/,
