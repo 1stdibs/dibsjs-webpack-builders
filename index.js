@@ -42,7 +42,7 @@ const loadersForPackage = packageRoot => {
         js6x: addLoader({
             test: /\.jsx?$/,
             include: isInPackageRegex,
-            loader: 'babel'
+            loader: 'babel-loader'
         }),
         sassWithExtractor: (extractorPlugin, queryOverride) => addLoader({
             test: /\.s?css$/,
@@ -63,7 +63,7 @@ const loadersForPackage = packageRoot => {
         sass: queryOverride => addLoader({
             test: /\.s?css$/,
             include: isInPackageRegex,
-            loader: buildLoader(['style', cssLoaderChain, 'sass-loader'], queryOverride)
+            loader: buildLoader(['style-loader', cssLoaderChain, 'sass-loader'], queryOverride)
         }),
         css: queryOverride => addLoader({
             test: /\.s?css$/,
@@ -73,7 +73,7 @@ const loadersForPackage = packageRoot => {
         json: addLoader({
             test: /\.json$/,
             include: isInPackageRegex,
-            loader: 'json'
+            loader: 'json-loader'
         }),
         enzyme: function (config) { // externals for enzyme
             if (undefined === config.externals) {
